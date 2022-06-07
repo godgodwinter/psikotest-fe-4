@@ -178,7 +178,6 @@ getData();
               <div class="flex justify-end gap-10 pt-2">
                 <a
                   :href="VITE_API_URLFE_SEKOLAH"
-                  target="_blank"
                   class="text-base-content font-normal text-sm hover:link"
                   >Home</a
                 >
@@ -190,25 +189,21 @@ getData();
                 > -->
                 <a
                   :href="VITE_API_URLFE_SEKOLAH + 'login'"
-                  target="_blank"
                   class="text-base-content font-normal text-sm hover:link"
                   >Sekolah</a
                 >
                 <a
                   :href="VITE_API_URLFE_YAYASAN"
-                  target="_blank"
                   class="text-base-content font-normal text-sm hover:link"
                   >Yayasan</a
                 >
                 <a
                   :href="VITE_API_URLFE_SISWA"
-                  target="_blank"
                   class="text-base-content font-normal text-sm hover:link"
                   >Siswa</a
                 >
                 <a
                   :href="VITE_API_URLFE_ORTU"
-                  target="_blank"
                   :to="{ name: 'LandingIndex' }"
                   class="text-base-content font-normal text-sm hover:link"
                   >Wali Murid</a

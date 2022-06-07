@@ -72,7 +72,7 @@ const pagesActiveClass = ref(
                 <p
                   class="text-base-content text-sm font-medium text-center link link-primary"
                 >
-                  User Sekolah
+                  Akun Siswa
                 </p>
               </div>
             </li>
@@ -123,33 +123,10 @@ const pagesActiveClass = ref(
             </li>
             <li
               class="lg:w-full py-0"
-              :class="[pagesActive == 'siswa' ? pagesActiveClass : '']"
+              :class="[pagesActive == 'deteksi' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminSiswa' }"
-                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="ml-3">Siswa </span>
-              </router-link>
-            </li>
-            <li
-              class="lg:w-full py-0"
-              :class="[pagesActive == 'kelas' ? pagesActiveClass : '']"
-            >
-              <router-link
-                :to="{ name: 'AdminKelas' }"
+                :to="{ name: 'AdminDeteksi' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -163,18 +140,18 @@ const pagesActiveClass = ref(
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                   />
                 </svg>
-                <span class="ml-3">Kelas </span>
+                <span class="ml-3">Hasil Deteksi </span>
               </router-link>
             </li>
             <li
               class="lg:w-full py-0"
-              :class="[pagesActive == 'walikelas' ? pagesActiveClass : '']"
+              :class="[pagesActive == 'sertifikat' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminWaliKelas' }"
+                :to="{ name: 'AdminSertifikat' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -188,125 +165,10 @@ const pagesActiveClass = ref(
                   <path
                     stroke-linecap="round"
                     stroke-linejoin="round"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
                   />
                 </svg>
-                <span class="ml-3">Wali Kelas </span>
-              </router-link>
-            </li>
-            <li
-              class="lg:w-full py-0"
-              :class="[pagesActive == 'pengguna' ? pagesActiveClass : '']"
-            >
-              <router-link
-                :to="{ name: 'AdminPengguna' }"
-                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span class="ml-3">Pengguna </span>
-              </router-link>
-            </li>
-            <li
-              class="lg:w-full py-0"
-              :class="[pagesActive == 'hasilpsikologi' ? pagesActiveClass : '']"
-            >
-              <router-link
-                :to="{ name: 'AdminHasilPsikologi' }"
-                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.285 1.05A3.989 3.989 0 0115 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.715-5.349L11 6.477V16h2a1 1 0 110 2H7a1 1 0 110-2h2V6.477L6.237 7.582l1.715 5.349a1 1 0 01-.285 1.05A3.989 3.989 0 015 15a3.989 3.989 0 01-2.667-1.019 1 1 0 01-.285-1.05l1.738-5.42-1.233-.617a1 1 0 01.894-1.788l1.599.799L9 4.323V3a1 1 0 011-1zm-5 8.274l-.818 2.552c.25.112.526.174.818.174.292 0 .569-.062.818-.174L5 10.274zm10 0l-.818 2.552c.25.112.526.174.818.174.292 0 .569-.062.818-.174L15 10.274z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="ml-3">Hasil Psikologi </span>
-              </router-link>
-            </li>
-            <li
-              class="lg:w-full py-0"
-              :class="[pagesActive == 'nilaipsikologi' ? pagesActiveClass : '']"
-            >
-              <router-link
-                :to="{ name: 'AdminNilaiPsikologi' }"
-                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="ml-3">Nilai Psikologi Siswa </span>
-              </router-link>
-            </li>
-            <li
-              class="lg:w-full py-0"
-              :class="[pagesActive == 'minatbakat' ? pagesActiveClass : '']"
-            >
-              <router-link
-                :to="{ name: 'AdminAnalisaMinatBakat' }"
-                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
-                <span class="ml-3">Analisa Minat dan Bakat </span>
-              </router-link>
-            </li>
-            <li
-              class="lg:w-full py-0"
-              :class="[pagesActive == 'penjurusan' ? pagesActiveClass : '']"
-            >
-              <router-link
-                :to="{ name: 'AdminAnalisaPenjurusan' }"
-                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z"
-                  />
-                </svg>
-                <span class="ml-3">Analisa Penjurusan </span>
+                <span class="ml-3">Sertifikat </span>
               </router-link>
             </li>
             <li
@@ -314,7 +176,7 @@ const pagesActiveClass = ref(
               :class="[pagesActive == 'kasus' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminCatatanKasus' }"
+                :to="{ name: 'AdminDashboard' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -341,7 +203,7 @@ const pagesActiveClass = ref(
               ]"
             >
               <router-link
-                :to="{ name: 'AdminCatatanPengembangandiri' }"
+                :to="{ name: 'AdminDashboard' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -357,7 +219,7 @@ const pagesActiveClass = ref(
                   />
                   <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
                 </svg>
-                <span class="ml-3">Catatan Pengembangan Diri Siswa </span>
+                <span class="ml-3">Catatan Pengembangandiri Siswa </span>
               </router-link>
             </li>
             <li
@@ -365,7 +227,7 @@ const pagesActiveClass = ref(
               :class="[pagesActive == 'prestasi' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminCatatanPrestasi' }"
+                :to="{ name: 'AdminDashboard' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -379,6 +241,79 @@ const pagesActiveClass = ref(
                   />
                 </svg>
                 <span class="ml-3">Catatan Prestasi Siswa </span>
+              </router-link>
+            </li>
+            <li
+              class="lg:w-full py-0"
+              :class="[pagesActive == 'klasifikasi' ? pagesActiveClass : '']"
+            >
+              <router-link
+                :to="{ name: 'AdminDashboard' }"
+                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M2 5a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm14 1a1 1 0 11-2 0 1 1 0 012 0zM2 13a2 2 0 012-2h12a2 2 0 012 2v2a2 2 0 01-2 2H4a2 2 0 01-2-2v-2zm14 1a1 1 0 11-2 0 1 1 0 012 0z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span class="ml-3">Klasifikasi Akademis dan Profesi </span>
+              </router-link>
+            </li>
+            <li
+              class="lg:w-full py-0"
+              :class="[pagesActive == 'referensi' ? pagesActiveClass : '']"
+            >
+              <router-link
+                :to="{ name: 'AdminDashboard' }"
+                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+                <span class="ml-3">Referensi Studi & Kerja </span>
+              </router-link>
+            </li>
+            <li
+              class="lg:w-full py-0"
+              :class="[pagesActive == 'buletin' ? pagesActiveClass : '']"
+            >
+              <router-link
+                :to="{ name: 'AdminDashboard' }"
+                class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"
+                  />
+                </svg>
+                <span class="ml-3">Buletin Psikologi </span>
               </router-link>
             </li>
           </ul>

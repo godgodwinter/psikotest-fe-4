@@ -11,7 +11,7 @@ import { useStoreGuruBk } from "@/stores/guruBk";
 const storeGuruBk = useStoreGuruBk();
 const getData = async () => {
   try {
-    const response = await Api.post(`gurubk/auth/me`);
+    const response = await Api.post(`siswa/auth/me`);
     storeGuruBk.setIdentitas(response.identitas);
     storeGuruBk.setSekolah(response.sekolah);
     storeGuruBk.setPaket(response.paket);
