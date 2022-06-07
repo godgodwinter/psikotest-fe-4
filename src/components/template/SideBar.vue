@@ -176,7 +176,7 @@ const pagesActiveClass = ref(
               :class="[pagesActive == 'kasus' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminDashboard' }"
+                :to="{ name: 'AdminCatatanKasus' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -203,7 +203,7 @@ const pagesActiveClass = ref(
               ]"
             >
               <router-link
-                :to="{ name: 'AdminDashboard' }"
+                :to="{ name: 'AdminPengembangandiri' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -227,7 +227,7 @@ const pagesActiveClass = ref(
               :class="[pagesActive == 'prestasi' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminDashboard' }"
+                :to="{ name: 'AdminPrestasi' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -248,7 +248,7 @@ const pagesActiveClass = ref(
               :class="[pagesActive == 'klasifikasi' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminDashboard' }"
+                :to="{ name: 'AdminKlasifikasi' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -268,10 +268,10 @@ const pagesActiveClass = ref(
             </li>
             <li
               class="lg:w-full py-0"
-              :class="[pagesActive == 'referensi' ? pagesActiveClass : '']"
+              :class="[pagesActive == 'referensistudi' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminDashboard' }"
+                :to="{ name: 'AdminReferensiStudi' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg
@@ -296,7 +296,7 @@ const pagesActiveClass = ref(
               :class="[pagesActive == 'buletin' ? pagesActiveClass : '']"
             >
               <router-link
-                :to="{ name: 'AdminDashboard' }"
+                :to="{ name: 'AdminBuletin' }"
                 class="text-base-content font-normal rounded-lg flex items-center p-2 group hover:link"
               >
                 <svg

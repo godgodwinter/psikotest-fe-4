@@ -9,7 +9,7 @@ import { useStoreAdminBar } from "@/stores/adminBar";
 import { useRouter, useRoute } from "vue-router";
 import Toast from "@/components/lib/Toast.js";
 const storeAdminBar = useStoreAdminBar();
-storeAdminBar.setPagesActive("hasilpsikologi");
+storeAdminBar.setPagesActive("deteksi");
 
 const router = useRouter();
 const route = useRoute();
