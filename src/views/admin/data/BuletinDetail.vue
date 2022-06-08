@@ -89,21 +89,6 @@ getData();
       <div class="overflow-x-auto px-4 space-y-10 py-2">
         <div class="space-y-2">
           <h1 class="text-lg font-bold text-gray-700 py-2 bg-gray-100 shadow">
-            Bidang
-          </h1>
-
-          <div class="space-y-2 border-b-2 py-2">
-            <p class="indent-8 text-gray-700">{{ data.bidang }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="w-full lg:w-full">
-    <div class="bg-white shadow rounded-lg px-4 py-2">
-      <div class="overflow-x-auto px-4 space-y-10 py-2">
-        <div class="space-y-2">
-          <h1 class="text-lg font-bold text-gray-700 py-2 bg-gray-100 shadow">
             Judul
           </h1>
 

@@ -5,30 +5,50 @@ import BreadCrumbSpace from "@/components/atoms/BreadCrumbSpace.vue";
 import { Field, Form } from "vee-validate";
 import { useStoreAdminBar } from "@/stores/adminBar";
 import { useStoreGuruBk } from "@/stores/guruBk";
+import { useRouter, useRoute } from "vue-router";
 
 import moment from "moment/min/moment-with-locales";
 import localization from "moment/locale/id";
+import Toast from "@/components/lib/Toast.js";
+import Api from "@/axios/axios";
 
 moment.updateLocale("id", localization);
 const storeGuruBk = useStoreGuruBk();
 const storeAdminBar = useStoreAdminBar();
 storeAdminBar.setPagesActive("dashboard");
 
+const router = useRouter();
+const route = useRoute();
 const getPaket = computed(() => storeGuruBk.getPaket);
 const getStats = computed(() => storeGuruBk.getStats);
 const getSekolah = computed(() => storeGuruBk.getSekolah);
+const getIdentitas = computed(() => storeGuruBk.getIdentitas);
 const data = ref([]);
 const dataDetail = ref({
-  nama: getSekolah.value.nama,
-  alamat: getSekolah.value.alamat,
-  status: getSekolah.value.status ? getSekolah.value.status : "Aktif",
-  kepsek_nama: getSekolah.value.kepsek_nama,
-  tahunajaran_nama: getSekolah.value.tahunajaran_nama,
-  semester_nama: getSekolah.value.semester_nama,
-  kecamatan: getSekolah.value.kecamatan,
-  kabupaten: getSekolah.value.kabupaten,
-  provinsi: getSekolah.value.provinsi,
+  nama: getIdentitas.value.nama,
+  nomeridentitas: getIdentitas.value.nomeridentitas,
+  alamat: getIdentitas.value.alamat,
+  jk: getIdentitas.value.jk,
+  tempatlahir: getIdentitas.value.tempatlahir,
+  tgllahir: getIdentitas.value.tgllahir,
+  usia: getIdentitas.value.usia,
+  agama: getIdentitas.value.agama,
+  anak: getIdentitas.value.anak,
+  kandung: getIdentitas.value.kandung,
+  angkat: getIdentitas.value.angkat,
+  tiri: getIdentitas.value.tiri,
+  statusanak: getIdentitas.value.statusanak,
+  bahasa: getIdentitas.value.bahasa,
+  tinggal: getIdentitas.value.tinggal,
+  jarak: getIdentitas.value.jarak,
+  telp: getIdentitas.value.telp,
+  kelas_id: {
+    label: `${getIdentitas.value.kelas ? getIdentitas.value.kelas.nama : ""}`,
+    id: getIdentitas.value.kelas_id,
+  },
 });
+
+const id = getSekolah.value.id;
 // validasi
 const validateData = (value) => {
   if (!value) {
@@ -40,22 +60,66 @@ const validateData = (value) => {
   return true;
 };
 const onSubmit = () => {
-  // const res = doStoreData();
+  const res = doStoreData();
+};
+
+const doStoreData = async (d) => {
+  let dataStore = {
+    nama: dataDetail.value.nama,
+    nomeridentitas: dataDetail.value.nomeridentitas,
+    alamat: dataDetail.value.alamat,
+    jk: dataDetail.value.jk,
+    // kelas_id: dataDetail.value.kelas_id.id,
+    tempatlahir: dataDetail.value.tempatlahir,
+    tgllahir: dataDetail.value.tgllahir,
+    usia: dataDetail.value.usia,
+    agama: dataDetail.value.agama,
+    anak: dataDetail.value.anak,
+    kandung: dataDetail.value.kandung,
+    angkat: dataDetail.value.angkat,
+    tiri: dataDetail.value.tiri,
+    statusanak: dataDetail.value.statusanak,
+    bahasa: dataDetail.value.bahasa,
+    tinggal: dataDetail.value.tinggal,
+    jarak: dataDetail.value.jarak,
+    telp: dataDetail.value.telp,
+  };
+  try {
+    const response = await Api.post(`siswa/myprofile/update`, dataStore);
+    Toast.success("Success", "Data Berhasil update!");
+    router.go();
+    // resetForm();
+
+    return response.data;
+  } catch (error) {
+    Toast.danger("Warning", "Data gagal ditambahkan!");
+    console.error(error);
+  }
 };
 // vue pinia watch
-storeGuruBk.$subscribe((mutation, state) => {
-  dataDetail.value = {
-    nama: getSekolah.value.nama,
-    alamat: getSekolah.value.alamat,
-    status: getSekolah.value.status ? getSekolah.value.status : "Aktif",
-    kepsek_nama: getSekolah.value.kepsek_nama,
-    tahunajaran_nama: getSekolah.value.tahunajaran_nama,
-    semester_nama: getSekolah.value.semester_nama,
-    kecamatan: getSekolah.value.kecamatan,
-    kabupaten: getSekolah.value.kabupaten,
-    provinsi: getSekolah.value.provinsi,
-  };
-});
+storeGuruBk.$subscribe((mutation, state) => {});
+
+const dataKelas = ref([]);
+let pilihKelas = ref([]);
+// get Kelas
+const getDataKelas = async () => {
+  try {
+    const response = await Api.get(`siswa/datasekolah/${id}/kelas`);
+    // console.log(response);
+    dataKelas.value = response.data;
+    dataKelas.value.forEach((item) => {
+      pilihKelas.value.push({
+        label: item.nama,
+        id: item.id,
+      });
+    });
+    return response;
+  } catch (error) {
+    Toast.danger("Warning", "Data Gagal dimuat");
+    console.error(error);
+  }
+};
+getDataKelas();
 </script>
 <template>
   <div class="pt-4 px-10 md:flex justify-between">
@@ -213,12 +277,108 @@ storeGuruBk.$subscribe((mutation, state) => {
                       <div>
                         <label
                           for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >NISN</label
+                        >
+                        <Field
+                          v-model="dataDetail.nomeridentitas"
+                          type="text"
+                          name="nomeridentitas"
+                          ref="nomeridentitas"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.nomeridentitas }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Kelas</label
+                        >
+                        <v-select
+                          class="py-2 px-3 w-72 mx-auto md:mx-0"
+                          :options="pilihKelas"
+                          v-model="dataDetail.kelas_id"
+                          :disabled="true"
+                        ></v-select>
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.nama }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Tempat Lahir</label
+                        >
+                        <Field
+                          v-model="dataDetail.tempatlahir"
+                          type="text"
+                          name="tempatlahir"
+                          ref="tempatlahir"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.tempatlahir }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Tanggal Lahir</label
+                        >
+                        <Datepicker
+                          v-model="dataDetail.tgllahir"
+                          format="yyyy/MM/dd"
+                          value-format="yyyy-MM-dd"
+                          :rules="validateData"
+                          required
+                        >
+                          <template #calendar-header="{ index, day }">
+                            <div
+                              :class="
+                                index === 5 || index === 6 ? 'red-color' : ''
+                              "
+                            >
+                              {{ day }}
+                            </div>
+                          </template>
+                        </Datepicker>
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.tgllahir }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Usia</label
+                        >
+                        <Field
+                          v-model="dataDetail.usia"
+                          type="text"
+                          name="usia"
+                          ref="usia"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.usia }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
                           >Alamat</label
                         >
                         <Field
                           v-model="dataDetail.alamat"
-                          :rules="validateData"
                           type="text"
                           name="alamat"
                           ref="alamat"
@@ -232,133 +392,202 @@ storeGuruBk.$subscribe((mutation, state) => {
                       <div>
                         <label
                           for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
-                          >Status</label
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >No. Handphone</label
+                        >
+                        <Field
+                          v-model="dataDetail.telp"
+                          type="text"
+                          name="telp"
+                          ref="telp"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.telp }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Jenis Kelamin</label
                         >
                         <select
                           class="select select-bordered w-full max-w-xs"
-                          disabled
+                          v-model="dataDetail.jk"
                         >
-                          <!-- <option disabled selected>Pilih Status ?</option> -->
-                          <option>Aktif</option>
-                          <option>Nonaktif</option>
+                          <option disabled selected>Pilih ?</option>
+                          <option>Laki-laki</option>
+                          <option>Perempuan</option>
                         </select>
-                        <!-- <div class="text-xs text-red-600 mt-1">
-                          {{ errors.status }}
-                        </div> -->
-                      </div>
-                      <div>
-                        <label
-                          for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
-                          >Nama Kepala Sekolah</label
-                        >
-                        <Field
-                          v-model="dataDetail.kepsek_nama"
-                          :rules="validateData"
-                          type="text"
-                          name="kepsek_nama"
-                          ref="kepsek_nama"
-                          class="input input-bordered md:w-full max-w-2xl"
-                          required
-                        />
                         <div class="text-xs text-red-600 mt-1">
-                          {{ errors.kepsek_nama }}
-                        </div>
-                      </div>
-                      <!-- <div>
-                        <label
-                          for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
-                          >Tahun Ajaran</label
-                        >
-                        <Field
-                          v-model="dataDetail.tahunajaran_nama"
-                          :rules="validateData"
-                          type="text"
-                          name="tahunajaran_nama"
-                          ref="tahunajaran_nama"
-                          class="input input-bordered md:w-full max-w-2xl"
-                          required
-                        />
-                        <div class="text-xs text-red-600 mt-1">
-                          {{ errors.tahunajaran_nama }}
+                          {{ errors.jk }}
                         </div>
                       </div>
                       <div>
                         <label
                           for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
-                          >Semester</label
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Agama</label
                         >
                         <Field
-                          v-model="dataDetail.semester_nama"
-                          :rules="validateData"
+                          v-model="dataDetail.agama"
                           type="text"
-                          name="semester_nama"
-                          ref="semester_nama"
+                          name="agama"
+                          ref="agama"
                           class="input input-bordered md:w-full max-w-2xl"
                           required
                         />
                         <div class="text-xs text-red-600 mt-1">
-                          {{ errors.semester_nama }}
-                        </div>
-                      </div> -->
-                      <div>
-                        <label
-                          for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
-                          >Provinsi</label
-                        >
-                        <Field
-                          v-model="dataDetail.provinsi"
-                          :rules="validateData"
-                          type="text"
-                          name="provinsi"
-                          ref="provinsi"
-                          class="input input-bordered md:w-full max-w-2xl"
-                          required
-                        />
-                        <div class="text-xs text-red-600 mt-1">
-                          {{ errors.provinsi }}
+                          {{ errors.agama }}
                         </div>
                       </div>
                       <div>
                         <label
                           for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
-                          >Kabupaten</label
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Anak ke</label
                         >
                         <Field
-                          v-model="dataDetail.kabupaten"
-                          :rules="validateData"
+                          v-model="dataDetail.anak"
                           type="text"
-                          name="kabupaten"
-                          ref="kabupaten"
+                          name="anak"
+                          ref="anak"
                           class="input input-bordered md:w-full max-w-2xl"
                           required
                         />
                         <div class="text-xs text-red-600 mt-1">
-                          {{ errors.kabupaten }}
+                          {{ errors.anak }}
                         </div>
                       </div>
                       <div>
                         <label
                           for="name"
-                          class="text-sm font-medium text-base-content block mb-2"
-                          >Kecamatan</label
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Jumlah Saudara Kandung</label
                         >
                         <Field
-                          v-model="dataDetail.kecamatan"
-                          :rules="validateData"
+                          v-model="dataDetail.kandung"
                           type="text"
-                          name="kecamatan"
-                          ref="kecamatan"
+                          name="kandung"
+                          ref="kandung"
                           class="input input-bordered md:w-full max-w-2xl"
                           required
                         />
                         <div class="text-xs text-red-600 mt-1">
-                          {{ errors.kecamatan }}
+                          {{ errors.kandung }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Jumlah Saudara Angkat</label
+                        >
+                        <Field
+                          v-model="dataDetail.angkat"
+                          type="text"
+                          name="angkat"
+                          ref="angkat"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.angkat }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Jumlah Saudara Tiri</label
+                        >
+                        <Field
+                          v-model="dataDetail.tiri"
+                          type="text"
+                          name="tiri"
+                          ref="tiri"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.tiri }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Status Anak</label
+                        >
+                        <select
+                          class="select select-bordered w-full max-w-xs"
+                          v-model="dataDetail.statusanak"
+                        >
+                          <option disabled selected>Pilih ?</option>
+                          <option>Lengkap</option>
+                          <option>Yatim</option>
+                          <option>Piatu</option>
+                          <option>Yatim Piatu</option>
+                        </select>
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.statusanak }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Bahasa Sehari-Hari Dirumah</label
+                        >
+                        <Field
+                          v-model="dataDetail.bahasa"
+                          type="text"
+                          name="bahasa"
+                          ref="bahasa"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.bahasa }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Tinggal Dengan</label
+                        >
+                        <select
+                          class="select select-bordered w-full max-w-xs"
+                          v-model="dataDetail.tinggal"
+                        >
+                          <option disabled selected>Pilih ?</option>
+                          <option>Orang Tua</option>
+                          <option>Saudara</option>
+                          <option>Asrama/Kost</option>
+                        </select>
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.tinggal }}
+                        </div>
+                      </div>
+                      <div>
+                        <label
+                          for="name"
+                          class="text-sm font-medium text-gray-900 block mb-2"
+                          >Jarak Ke Sekolah</label
+                        >
+                        <Field
+                          v-model="dataDetail.jarak"
+                          type="text"
+                          name="jarak"
+                          ref="jarak"
+                          class="input input-bordered md:w-full max-w-2xl"
+                          required
+                        />
+                        <div class="text-xs text-red-600 mt-1">
+                          {{ errors.jarak }}
                         </div>
                       </div>
                     </div>

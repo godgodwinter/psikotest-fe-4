@@ -63,7 +63,7 @@ const router = createRouter({
         {
           path: '/pages/admin',
           name: 'AdminDashboard',
-          component: DashBoard,
+          component: () => import("@/views/admin/DashBoard.vue"),
         },
         {
           path: '/pages/data/sertifikat',
