@@ -159,7 +159,7 @@ getDataKelas();
     </div>
   </div>
 
-  <div class="px-4 py-4">
+  <!-- <div class="px-4 py-4">
     <div class="stats shadow">
       <div class="stat">
         <div class="stat-title">Jenis Paket :</div>
@@ -169,7 +169,6 @@ getDataKelas();
           {{
             moment(getSekolah.updated_at, "YYYY-MM-DD").format(" Do MMM YYYY")
           }}
-          <!-- {{ getSekolah.updated_at }} -->
         </div>
       </div>
     </div>
@@ -194,7 +193,6 @@ getDataKelas();
         </div>
         <div class="stat-title">Kelas</div>
         <div class="stat-value">{{ getStats.kelas }} Kelas</div>
-        <!-- <div class="stat-desc">Last Updated : 21 Juni 2022</div> -->
       </div>
 
       <div class="stat">
@@ -215,7 +213,6 @@ getDataKelas();
         </div>
         <div class="stat-title">Siswa</div>
         <div class="stat-value">{{ getStats.siswa }} Siswa</div>
-        <!-- <div class="stat-desc">Last Updated : 21 Juni 2022</div> -->
       </div>
 
       <div class="stat">
@@ -236,10 +233,9 @@ getDataKelas();
         </div>
         <div class="stat-title">Walikelas</div>
         <div class="stat-value">{{ getStats.walikelas }}</div>
-        <!-- <div class="stat-desc">Last Updated : 20 Juni 2022</div> -->
       </div>
     </div>
-  </div>
+  </div> -->
 
   <div class="px-4 py-4">
     <h3 class="font-bold">Update Profile</h3>
