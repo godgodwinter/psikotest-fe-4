@@ -98,13 +98,24 @@ getData();
     class="z-10 top-0 block z-998 font-serif h-full fixed flex-row bg-base-200 text-base-content w-4/5 md:hidden shadow-xl border-r-2 border-base-100"
   >
     <div class="px-2 ml-5 pt-0 pb-5 overflow-y-auto h-full">
-      <router-link :to="{ name: 'LandingIndex' }">
+      <a :href="VITE_API_URLFE_SEKOLAH">
         <h1 class="text-xs text-base-content font-bold py-2 pt-6">Home</h1>
-      </router-link>
+      </a>
 
-      <router-link :to="{ name: 'LandingLogin' }">
-        <h1 class="text-xs text-base-content font-bold py-2 pt-6">Login</h1>
-      </router-link>
+      <a :href="VITE_API_URLFE_SEKOLAH + 'login'">
+        <h1 class="text-xs text-base-content font-bold py-2 pt-6">Sekolah</h1>
+      </a>
+      <a :href="VITE_API_URLFE_YAYASAN">
+        <h1 class="text-xs text-base-content font-bold py-2 pt-6">Yayasan</h1>
+      </a>
+      <a :href="VITE_API_URLFE_SISWA">
+        <h1 class="text-xs text-base-content font-bold py-2 pt-6">Siswa</h1>
+      </a>
+      <a :href="VITE_API_URLFE_ORTU">
+        <h1 class="text-xs text-base-content font-bold py-2 pt-6">
+          Wali Murid
+        </h1>
+      </a>
 
       <!-- <h1 class="text-xs text-gray-400 font-bold py-2">Installation</h1> -->
     </div>
@@ -146,7 +157,7 @@ getData();
         :array="arr"
         :eraseSpeed="50"
         :typeSpeed="40"
-        :delay="5000"
+        :delay="2000"
         :intervals="500"
       />
     </div>
