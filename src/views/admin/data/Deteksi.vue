@@ -211,7 +211,7 @@ const dataKetNegativ = ref([
                 <!-- row 1 -->
                 <tr
                   class="hover"
-                  v-for="(item, index) in siswa.deteksi.apiprobk_deteksi_list"
+                  v-for="(item, index) in siswa.deteksi.apiprobk_deteksi_list.slice(0, 79)"
                   :key="item.id"
                 >
                   <td>{{ index + 1 }}</td>
