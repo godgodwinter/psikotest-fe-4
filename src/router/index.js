@@ -71,9 +71,19 @@ const router = createRouter({
           component: () => import("@/views/admin/data/Sertifikat.vue"),
         },
         {
+          path: '/pages/data/terapis',
+          name: 'AdminTerapis',
+          component: () => import("@/views/admin/data/Terapis.vue"),
+        },
+        {
           path: '/pages/data/deteksi',
           name: 'AdminDeteksi',
           component: () => import("@/views/admin/data/Deteksi.vue"),
+        },
+        {
+          path: '/pages/data/penanganan',
+          name: 'AdminPenanganan',
+          component: () => import("@/views/admin/data/Penanganan.vue"),
         },
         {
           path: '/pages/data/catatan/kasus',
