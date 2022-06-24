@@ -63,19 +63,20 @@ const kecerdasanList = ref([
   {
     label: "Cukup",
     code: "C",
-    altCode: "CB",
   },
   {
-    label: "Kurang Baik",
-    code: "KB",
+    label: "Cukup Baik",
+    code: "CB",
+    // altCode: "CB",
   },
   {
     label: "Baik",
     code: "B",
   },
   {
-    label: "Sangat Baik",
-    code: "SB",
+    label: "Sangat Baik", //Baik sekali
+    code: "BS",
+    // altCode: "BS",
   },
   {
     label: "Sangat Baik Sekali",

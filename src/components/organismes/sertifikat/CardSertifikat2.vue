@@ -18,7 +18,12 @@ const props = defineProps({
   default() {
     return null;
   },
+  kelas: Object,
+  default() {
+    return null;
+  },
 });
+const kelas = ref(props.kelas);
 const siswa = ref(props.siswa);
 const aspekKepribadianRank = ref(props.aspekKepribadianRank);
 const temp = ref(props.temp);
@@ -63,19 +68,20 @@ const kecerdasanList = ref([
   {
     label: "Cukup",
     code: "C",
-    altCode: "CB",
   },
   {
-    label: "Kurang Baik",
-    code: "KB",
+    label: "Cukup Baik",
+    code: "CB",
+    // altCode: "CB",
   },
   {
     label: "Baik",
     code: "B",
   },
   {
-    label: "Sangat Baik",
-    code: "SB",
+    label: "Sangat Baik", //Baik sekali
+    code: "BS",
+    // altCode: "BS",
   },
   {
     label: "Sangat Baik Sekali",
@@ -150,7 +156,7 @@ const kecerdasanList = ref([
                 <tr>
                   <td class="whitespace-nowrap w-1/100">I.</td>
                   <td class="whitespace-nowrap w-1/100">
-                    IQ (Intelegence Quotient) / CFIT
+                    IQ (Intelegence Quotient) / IST
                   </td>
                   <td class="whitespace-nowrap w-1/100">:</td>
                   <td class="whitespace-nowrap w-1/100">
@@ -541,7 +547,7 @@ const kecerdasanList = ref([
             Potensi kecerdasan subyek yang dapat digunakan saat ini
             <b> {{ siswa.iq }}</b
             >,(IQ=<b>{{ siswa.iq }}</b
-            >, CFIT = <b>{{ siswa.sertifikat.iq_persen }}%)</b> artinya dengan
+            >, IST = <b>{{ siswa.sertifikat.iq_persen }}%)</b> artinya dengan
             tingkat kemampuan menggunakan kecerdasan majemuk tergolong
             <b>{{ siswa.iqh }}</b
             >.

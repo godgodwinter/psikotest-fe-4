@@ -71,6 +71,11 @@ const router = createRouter({
           component: () => import("@/views/admin/data/Sertifikat.vue"),
         },
         {
+          path: '/pages/data/kecerdasanmajemuk',
+          name: 'AdminKecerdasanMajemuk',
+          component: () => import("@/views/admin/data/KecerdasanMajemuk.vue"),
+        },
+        {
           path: '/pages/data/terapis',
           name: 'AdminTerapis',
           component: () => import("@/views/admin/data/Terapis.vue"),
