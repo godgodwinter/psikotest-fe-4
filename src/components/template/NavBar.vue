@@ -10,6 +10,7 @@ import { useStoreGuruBk } from "@/stores/guruBk";
 const storeGuruBk = useStoreGuruBk();
 const paket = computed(() => storeGuruBk.getPaket);
 const getSekolah = computed(() => storeGuruBk.getSekolah);
+const getIdentitas = computed(() => storeGuruBk.getIdentitas);
 storeGuruBk.$subscribe((mutation, state) => {
   // console.log(mutation, state);
   // console.log(paket.value);
@@ -149,6 +150,12 @@ getData();
           <div class="hidden lg:flex items-center">
             <span class="text-base font-bold uppercase text-gray-500 mr-5">
               {{ getSekolah.nama }}
+            </span>
+            <span class="text-base font-bold uppercase text-gray-500 mr-5">
+              -
+            </span>
+            <span class="text-base font-bold uppercase text-gray-500 mr-5">
+              {{ getIdentitas.kelas_nama }}
             </span>
             <span class="text-base font-bold uppercase text-gray-500 mr-5">
               -
