@@ -8,7 +8,11 @@
     "test:unit": "vitest --environment jsdom",
     "test:e2e": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress open --e2e'",
     "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:4173/ 'cypress run --e2e'",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "copy:siswa": "vite build && rm -rf ../deploy/d-psikotest/siswa && mkdir ../deploy/d-psikotest/siswa  && cp -r dist/* ../deploy/d-psikotest/siswa && cp -r ../deploy/d-psikotest/.htaccess ../deploy/d-psikotest/siswa",
+    "build:copy": "npm run copy:siswa",
+    "copy:siswa2": "vite build && rm -rf ../deploy/d-psikotest/siswa && mkdir ../deploy/d-psikotest/siswa  && cp -r dist/* ../deploy/d-psikotest/siswa && cp -r ../deploy/d-psikotest/.htaccess ../deploy/d-psikotest/siswa",
+    "build:copy2": "npm run copy:siswa2"
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^3.0.0",
