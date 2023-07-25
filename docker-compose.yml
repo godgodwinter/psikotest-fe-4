@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+    viteapp:
+      restart: always
+      build: .
+      container_name: fe-4-siswa
+      ports:
+        - '${APP_PORT}:${APP_PORT}'
