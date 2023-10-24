@@ -162,7 +162,7 @@ getData();
           </router-link>
           <div class="md:w-3/5">
             <div class="hidden md:block">
-              <div class="flex justify-end gap-10 pt-2">
+              <div class="flex justify-start gap-10 pt-2">
                 
                 <a href="https://ypmt-psiprobk.com/"
                   class=" text-base-content font-normal text-sm   hover:link"
