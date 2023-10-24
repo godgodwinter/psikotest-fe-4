@@ -96,6 +96,10 @@ getData();
   <div v-if="isSidebarActive" id="aside"
     class="z-10 top-0 block z-998 font-serif h-full fixed flex-row bg-base-200 text-base-content w-4/5 md:hidden shadow-xl border-r-2 border-base-100">
     <div class="px-2 ml-5 pt-0 pb-5 overflow-y-auto h-full">
+    
+      <a href="https://ypmt-psiprobk.com/">
+        <h1 class="text-xs text-base-content font-bold py-2 pt-6">Home</h1></a>
+<!--         
       <a :href="VITE_API_URLFE_SEKOLAH">
         <h1 class="text-xs text-base-content font-bold py-2 pt-6">Home</h1>
       </a>
@@ -117,7 +121,7 @@ getData();
 
       <a :href="VITE_API_URLFE_UJIAN" target="_blank" class="text-base-content font-normal text-sm hover:link">
         <h1 class="text-xs text-base-content font-bold py-2 pt-6">Ujian Bidang Studi</h1>
-      </a>
+      </a> -->
 
       <!-- <h1 class="text-xs text-gray-400 font-bold py-2">Installation</h1> -->
     </div>
@@ -159,21 +163,25 @@ getData();
           <div class="md:w-3/5">
             <div class="hidden md:block">
               <div class="flex justify-end gap-10 pt-2">
-                <a :href="VITE_API_URLFE_SEKOLAH" class="text-base-content font-normal text-sm hover:link">Home</a>
+                
+                <a href="https://ypmt-psiprobk.com/"
+                  class=" text-base-content font-normal text-sm   hover:link"
+                  >Home</a>
+                <!-- <a :href="VITE_API_URLFE_SEKOLAH" class="text-base-content font-normal text-sm hover:link">Home</a> -->
 
                 <!-- <a
                   href="#paket"
                   class=" text-base-content font-normal text-sm   hover:link"
                   >Paket</a
                 > -->
-                <a :href="VITE_API_URLFE_SEKOLAH + 'login'"
+                <!-- <a :href="VITE_API_URLFE_SEKOLAH + 'login'"
                   class="text-base-content font-normal text-sm hover:link">Sekolah</a>
                 <a :href="VITE_API_URLFE_YAYASAN" class="text-base-content font-normal text-sm hover:link">Yayasan</a>
                 <a :href="VITE_API_URLFE_SISWA" class="text-base-content font-normal text-sm hover:link">Siswa</a>
                 <a :href="VITE_API_URLFE_ORTU" :to="{ name: 'LandingIndex' }"
                   class="text-base-content font-normal text-sm hover:link">Wali Murid</a>
                 <a :href="VITE_API_URLFE_UJIAN" target="_blank"
-                  class="text-base-content font-normal text-sm hover:link">Ujian Bidang Studi</a>
+                  class="text-base-content font-normal text-sm hover:link">Ujian Bidang Studi</a> -->
                 <!-- <a href="https://github.com/godgodwinter" target="blank" class=" text-base-content font-semibold text-sm hover:text-vue-600 hover:link">Github </a> -->
               </div>
             </div>
